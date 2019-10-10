@@ -1,0 +1,15 @@
+1. Obvs not finished
+
+2.a. Not tidied up, the code is in the order it popped into my head
+
+2.b. There are lots of duplicates in functions and classes
+
+2.c. Maybe tomorrow I will spend time tidying and making more concise
+
+2.d This will include renaming things
+
+3. I am happy all works as intended up to the point at which I am working on as marked in gameplay.js
+
+4. No need for challenges yet ta
+
+5. If anything is glaringly bad then feel free to point out but this version is not meant as a feedback submission

@@ -1,0 +1,23 @@
+body {
+	font-family: Verdana;
+}
+
+
+.character {
+	width: 100px;
+	height: 50px;
+	border: solid;
+	border-color: black;
+	text-align: center;
+	white-space: pre;
+}
+
+.baddie {
+	width: 100px;
+	height: 50px;
+	border: solid;
+	border-color: red;
+	text-align: center;
+	white-space: pre;
+	float: right;
+}
