@@ -1,0 +1,5 @@
+1. display current hp out of max hp
+2. on startGame display a player's name as their turn
+3. attack button to to reduce enemy hp, update dispaly of this
+4. enemy turn to attack auto after goodie turn
+5. add heal option, to heal up to max hp, castable on either ally

@@ -1,14 +1,15 @@
 class Character {
-	constructor (name, badgood, level) {
+	constructor (name, badgood, level, health) {
 		this.name = name;
 		this.badgood = badgood;
 		this.level = level;
+		this.health = health
 	}
 }
 
 class Goodie extends Character {
-	constructor (name, badgood, level, type, strength, defense, exp) {
-		super (name, badgood, level);
+	constructor (name, badgood, level, type, strength, defense, exp, health) {
+		super (name, badgood, level, health);
 		this.type = type;
 		this.strength = strength;
 		this.defense = defense;
@@ -20,8 +21,8 @@ class Goodie extends Character {
 }
 
 class Baddie extends Character {
-	constructor (name, badgood, level, type, strength, defense) {
-		super (name, badgood, level);
+	constructor (name, badgood, level, type, strength, defense, health) {
+		super (name, badgood, level, health);
 		this.type = type;
 		this.strength = strength;
 		this.defense = defense;
@@ -32,8 +33,8 @@ class Baddie extends Character {
 }
 
 class Dragon extends Baddie {
-	constructor (name, badgood, level, type, strength, defense) {
-		super (name, badgood, level, type, strength, defense);
+	constructor (name, badgood, level, type, strength, defense, health) {
+		super (name, badgood, level, type, strength, defense, health);
 		var charName = this.name;
 		var characterbox = document.createElement("div");
 		characterbox.className = "baddie";
@@ -44,7 +45,7 @@ class Dragon extends Baddie {
 }
 
 class Witch extends Baddie {
-	constructor (name, badgood, level, type, strength, defense) {
+	constructor (name, badgood, level, type, strength, defense, health) {
 		super (name, badgood, level, type, strength, defense);
 		var charName = this.name;
 		var characterbox = document.createElement("div");
@@ -56,8 +57,8 @@ class Witch extends Baddie {
 }
 
 class Wizard extends Baddie {
-	constructor (name, badgood, level, type, strength, defense) {
-		super (name, badgood, level, type, strength, defense);
+	constructor (name, badgood, level, type, strength, defense, health) {
+		super (name, badgood, level, type, strength, defense, health);
 		var charName = this.name;
 		var characterbox = document.createElement("div");
 		characterbox.className = "baddie";
@@ -68,8 +69,8 @@ class Wizard extends Baddie {
 }
 
 class Human extends Goodie {
-	constructor (name, badgood, level, type, strength, defense, exp) {
-		super (name, badgood, level, type, strength, defense, exp);
+	constructor (name, badgood, level, type, strength, defense, exp, health) {
+		super (name, badgood, level, type, strength, defense, exp, health);
 		var charName = this.name;
 		var characterbox = document.createElement("div");
 		characterbox.className = "character";

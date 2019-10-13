@@ -2,10 +2,9 @@ body {
 	font-family: Verdana;
 }
 
-
 .character {
 	width: 100px;
-	height: 50px;
+	height: 70px;
 	border: solid;
 	border-color: black;
 	text-align: center;
@@ -14,10 +13,27 @@ body {
 
 .baddie {
 	width: 100px;
-	height: 50px;
+	height: 80px;
 	border: solid;
 	border-color: red;
 	text-align: center;
 	white-space: pre;
 	float: right;
+}
+
+.startGamePopUp {
+	width: 600px;
+	height: 300px;
+	background-color: #e6e6e6;
+	text-align: center;
+	position: absolute;
+	top: 100px;
+	left: 400px;
+
+}
+
+#attackButtonId {
+	position: absolute;
+	top: 50px;
+	left: 50px;
 }
