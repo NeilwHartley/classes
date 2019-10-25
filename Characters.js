@@ -1,40 +1,125 @@
 class Character {
-	constructor (name, badgood, level, health) {
+	constructor (name, badgood, level, maxHP) {
 		this.name = name;
 		this.badgood = badgood;
 		this.level = level;
-		this.health = health
+		this.maxHP = maxHP
 	}
 }
 
-class Goodie extends Character {
-	constructor (name, badgood, level, type, strength, defense, exp, health) {
-		super (name, badgood, level, health);
+var i = 1;
+
+class Player extends Character {
+	constructor (name, badgood, level, type, strength, defense, exp, maxHP) {
+		super (name, badgood, level, maxHP);
 		this.type = type;
 		this.strength = strength;
 		this.defense = defense;
 		this.exp = exp;
 	}
-	attack() {
-		return (this.name + "hits" + enemyName + "for" + (this.strenth - enemyDefense) + "points.")
+	//attack() {
+	//	return (this.name + "hits" + enemyName + "for" + (this.strenth - enemyDefense) + "points.")
+	//}
+
+	attack2() {
+		document.getElementById("gameContainer").style.visibility = "hidden";
+		var currentPlayerAttack = currentPlayer.strength;
+		var attackValue = currentPlayerAttack - newEnemy.defense;
+		if (attackValue > 0) {
+			newEnemy.maxHP = newEnemy.maxHP - attackValue;}
+		var maxHPText = document.createTextNode("\n" + "HP: " + newEnemy.maxHP);
+		var getBaddie = document.getElementById(enemy1str);
+		document.getElementById(enemy1str).replaceChild(maxHPText, getBaddie.childNodes[1]);
+		setTimeout(newEnemy.enemyAttack, 500);
+		currentPlayer.exp =+ attackValue;
+
+		var getGameLog = document.getElementById("gameLog");
+
+	
+		var gameLogListItem = document.createElement("li");
+		var id = "gameLogListItem" + i;
+		gameLogListItem.id = id;
+		var idminus1 = "enemyAttackListItem" + (i - 1);
+
+		var playerAttackText = document.createTextNode(currentPlayer.name + " hits the " + enemy1str + 
+				" for " + attackValue + " points." );
+
+		getGameLog.insertBefore(gameLogListItem, document.getElementById(idminus1));
+		gameLogListItem.appendChild(playerAttackText);
+		//getStartPopUp.removeChild(getStartPopUp.childNodes[1])
+		i++;
+		updateGameLog();
+		//alternatePlayerTurn();
+	}	
+
+	heal() {
+		document.getElementById("gameContainer").style.visibility = "hidden";
+		var healValue = currentPlayer.level + currentPlayer.level;
+		currentPlayer.maxHP = currentPlayer.maxHP + healValue;
+		var maxHPText = document.createTextNode("\n" + "HP: " + currentPlayer.maxHP);
+		var getPlayer = document.getElementById("player1Icon");
+		document.getElementById("player1Icon").replaceChild(maxHPText, getPlayer.childNodes[1]);
+		setTimeout(newEnemy.enemyAttack, 500);
+		console.log("Heal");
+		updateGameLog();
+		//alternatePlayerTurn();
 	}
 }
 
 class Baddie extends Character {
-	constructor (name, badgood, level, type, strength, defense, health) {
-		super (name, badgood, level, health);
+	constructor (name, badgood, level, type, strength, defense, maxHP) {
+		super (name, badgood, level, maxHP);
 		this.type = type;
 		this.strength = strength;
 		this.defense = defense;
 	}
-	attack() {
-		return (this.name + "hits" + enemyName + "for" + (this.strenth - enemyDefense) + "points.")
+	//attack() {
+	//	return (this.name + "hits" + enemyName + "for" + (this.strenth - enemyDefense) + "points.")
+	//}
+	enemyAttack() {
+	var player1List = [player1, "player1"];
+	var player2List = [player2, "player2"];
+	var playerList = [player1List, player2List];
+	var min = 0;
+	var max = playerList.length;
+	var randomNum = Math.floor(Math.random() * (max - min)) + min;
+	var attackedPlayerList = playerList[randomNum];
+	var attackedPlayer = attackedPlayerList[0];
+
+	var enemyAttack = newEnemy.strength;
+	var attackValue = enemyAttack - attackedPlayer.defense;
+	if (attackValue > 0) {
+		attackedPlayer.maxHP = attackedPlayer.maxHP - attackValue; }
+	var maxHPText = document.createTextNode("\n" + "HP: " + attackedPlayer.maxHP);
+
+	var getPlayerDiv = document.getElementById(attackedPlayerList[1] + "Icon");
+	getPlayerDiv.replaceChild(maxHPText, getPlayerDiv.childNodes[1]);
+
+
+	var getGameLog = document.getElementById("gameLog");
+
+	
+	var enemyAttackListItem = document.createElement("li");
+	var id = "gameLogListItem" + i;
+	enemyAttackListItem.id = id;
+	var idminus1 = "gameLogListItem" + (i - 1);
+
+	var startGameNode = document.createTextNode("The " + enemy1str + " hits " + 
+		attackedPlayer.name + " for " + attackValue + " points." );
+
+	getGameLog.insertBefore(enemyAttackListItem, document.getElementById(idminus1));
+	enemyAttackListItem.appendChild(startGameNode);
+	//getStartPopUp.removeChild(getStartPopUp.childNodes[1])
+	i++;
+	document.getElementById("gameContainer").style.visibility = "visible";
+	updateGameLog();
+	alternatePlayerTurn();
 	}
 }
 
 class Dragon extends Baddie {
-	constructor (name, badgood, level, type, strength, defense, health) {
-		super (name, badgood, level, type, strength, defense, health);
+	constructor (name, badgood, level, type, strength, defense, maxHP) {
+		super (name, badgood, level, type, strength, defense, maxHP);
 		var charName = this.name;
 		var characterbox = document.createElement("div");
 		characterbox.className = "baddie";
@@ -45,8 +130,8 @@ class Dragon extends Baddie {
 }
 
 class Witch extends Baddie {
-	constructor (name, badgood, level, type, strength, defense, health) {
-		super (name, badgood, level, type, strength, defense);
+	constructor (name, badgood, level, type, strength, defense, maxHP) {
+		super (name, badgood, level, type, strength, defense, maxHP);
 		var charName = this.name;
 		var characterbox = document.createElement("div");
 		characterbox.className = "baddie";
@@ -57,8 +142,8 @@ class Witch extends Baddie {
 }
 
 class Wizard extends Baddie {
-	constructor (name, badgood, level, type, strength, defense, health) {
-		super (name, badgood, level, type, strength, defense, health);
+	constructor (name, badgood, level, type, strength, defense, maxHP) {
+		super (name, badgood, level, type, strength, defense, maxHP);
 		var charName = this.name;
 		var characterbox = document.createElement("div");
 		characterbox.className = "baddie";
@@ -68,14 +153,8 @@ class Wizard extends Baddie {
 	}
 }
 
-class Human extends Goodie {
-	constructor (name, badgood, level, type, strength, defense, exp, health) {
-		super (name, badgood, level, type, strength, defense, exp, health);
-		var charName = this.name;
-		var characterbox = document.createElement("div");
-		characterbox.className = "character";
-		characterbox.id = charName;
-		var otherChar = document.getElementById("neil");
-		document.body.insertBefore(characterbox, otherChar);
+class Human extends Player {
+	constructor (name, badgood, level, type, strength, defense, exp, maxHP) {
+		super (name, badgood, level, type, strength, defense, exp, maxHP);
 	}
 }
