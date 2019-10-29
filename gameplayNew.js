@@ -50,9 +50,9 @@ function createPlayers() {
 	var player2Name = document.getElementById("player2Input").value;
 
 	window.player1 = 
-	new Human(player1Name, "good", currentLevel, "human", playerStrength, playerDefense, 0, playerMaxHp);
+	new Human(player1Name, "good", currentLevel, "human", playerStrength, playerDefense, 0, playerMaxHp, "alive");
 	window.player2 = 
-	new Human(player2Name, "good", currentLevel, "human", playerStrength, playerDefense, 0, playerMaxHp);
+	new Human(player2Name, "good", currentLevel, "human", playerStrength, playerDefense, 0, 50, "alive"); //HP set to 50 for test purpose
 
 	window.playerList = [player1, player2];
 	window.p = 0;
@@ -222,15 +222,26 @@ function updateEnemyStats() {
 } */
 
 function alternatePlayerTurn() {
+
 	if (p == 0) {
-		p = 1} else {
-		p = 0
+		p = 1;
+	} else {
+		p = 0;
 	}
+
+	if (player1.alive == "dead") {
+		p = 1;
+	}
+	if (player2.alive == "dead") {
+		p = 0;
+	}
+
 	currentPlayer = playerList[p];
 
 	var getNodes = document.getElementById("gameContainer").childNodes;
 	var dispCurrentPlayerText = document.createTextNode("It's " + currentPlayer.name + "'s turn.");
 	gameContainer.replaceChild(dispCurrentPlayerText, getNodes[0]);
+
 }
 
 function updateGameLog() {
